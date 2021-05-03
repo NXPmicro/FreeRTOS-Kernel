@@ -85,7 +85,11 @@ extern void vPortYield( void );
 #define portEND_SWITCHING_ISR( xSwitchRequired ) if( xSwitchRequired ) 	*(portNVIC_INT_CTRL) = portNVIC_PENDSVSET
 #define portYIELD_FROM_ISR( x ) portEND_SWITCHING_ISR( x )
 /*-----------------------------------------------------------*/
-
+/* Tickless idle/low power functionality. */
+#ifndef portSUPPRESS_TICKS_AND_SLEEP
+	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
+	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdleTime )
+#endif
 
 /* Critical section management. */
 
