@@ -7,7 +7,7 @@ target_sources(${MCUX_SDK_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.c
 )
 
-target_include_directories(${MCUX_SDK_PROJECT_NAME} PRIVATE
+target_include_directories(${MCUX_SDK_PROJECT_NAME} PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/ARM_CM33_NTZ/non_secure
 )
 
@@ -15,14 +15,14 @@ target_include_directories(${MCUX_SDK_PROJECT_NAME} PRIVATE
 if(${MCUX_DEVICE} STREQUAL "LPC55S16")
     include(middleware_freertos-kernel_LPC55S16)
 endif()
+if(${MCUX_DEVICE} STREQUAL "LPC55S28")
+    include(middleware_freertos-kernel_LPC55S28)
+endif()
 if(${MCUX_DEVICE} STREQUAL "LPC55S69_cm33_core0")
     include(middleware_freertos-kernel_LPC55S69_cm33_core0)
 endif()
 if(${MCUX_DEVICE} STREQUAL "LPC55S69_cm33_core1")
     include(middleware_freertos-kernel_LPC55S69_cm33_core1)
-endif()
-if(${MCUX_DEVICE} STREQUAL "LPC55S28")
-    include(middleware_freertos-kernel_LPC55S28)
 endif()
 if(${MCUX_DEVICE} STREQUAL "MIMXRT685S_cm33")
     include(middleware_freertos-kernel_MIMXRT685S_cm33)
