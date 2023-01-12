@@ -107,6 +107,13 @@ interrupts that have a priority below configMAX_API_CALL_INTERRUPT_PRIORITY. */
 #define portENABLE_INTERRUPTS()		vPortClearInterruptMask( 0 )
 #define portSET_INTERRUPT_MASK_FROM_ISR()		ulPortSetInterruptMask()
 #define portCLEAR_INTERRUPT_MASK_FROM_ISR(x)	vPortClearInterruptMask(x)
+/*-----------------------------------------------------------*/
+
+/* Tickless idle/low power functionality. */
+#ifndef portSUPPRESS_TICKS_AND_SLEEP
+	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
+	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdleTime )
+#endif
 
 /*-----------------------------------------------------------*/
 

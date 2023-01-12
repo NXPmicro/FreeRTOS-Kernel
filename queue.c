@@ -1524,6 +1524,8 @@ BaseType_t xQueueSemaphoreTake( QueueHandle_t xQueue,
     BaseType_t xEntryTimeSet = pdFALSE;
     TimeOut_t xTimeOut;
     Queue_t * const pxQueue = xQueue;
+    void *pvBuffer = NULL;
+    (void)pvBuffer;
 
     #if ( configUSE_MUTEXES == 1 )
         BaseType_t xInheritanceOccurred = pdFALSE;
