@@ -6,8 +6,8 @@ target_sources(${MCUX_SDK_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/croutine.c
     ${CMAKE_CURRENT_LIST_DIR}/event_groups.c
     ${CMAKE_CURRENT_LIST_DIR}/list.c
-    ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/ARM_CA53_64_BIT_SRE/port.c
-    ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/ARM_CA53_64_BIT_SRE/portASM.S
+    ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/AARCH64_SRE/port.c
+    ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/AARCH64_SRE/portASM.S
     ${CMAKE_CURRENT_LIST_DIR}/queue.c
     ${CMAKE_CURRENT_LIST_DIR}/stream_buffer.c
     ${CMAKE_CURRENT_LIST_DIR}/tasks.c
@@ -16,7 +16,7 @@ target_sources(${MCUX_SDK_PROJECT_NAME} PRIVATE
 
 target_include_directories(${MCUX_SDK_PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/include
-    ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/ARM_CA53_64_BIT_SRE
+    ${CMAKE_CURRENT_LIST_DIR}/portable/GCC/AARCH64_SRE
 )
 
 include(middleware_freertos-kernel_extension)
