@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_10" name="FreeRTOS" brief="Real-time operating system for microcontrollers from Amazon" format_version="3.10" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.10.xsd">
-  <!--Timestamp (UTC): 2023-01-10 16:34:30.899999-->
-  <!--This manifest is generated based on sdk repo commit: 11a5f6af5190bfe018a89b4d02c239713dc4cfa6-->
+  <!--Timestamp (UTC): 2023-03-27 10:46:25.155168-->
+  <!--This manifest is generated based on sdk repo commit: 7a3cf97dd3582e3ee8a98ede814ff1f2a45ea519-->
   <externalDefinitions>
     <definition extID="MIMXRT1062xxxxA"/>
-    <definition extID="MIMXRT1062xxxxB"/>
     <definition extID="core0_MIMXRT1062xxxxA"/>
-    <definition extID="core0_MIMXRT1062xxxxB"/>
     <definition extID="armgcc"/>
     <definition extID="mcuxpresso"/>
     <definition extID="compiler_gcc"/>
   </externalDefinitions>
   <ksdk id="MCUXpressoSDK2130_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_10" name="MCUXpressoSDK2130_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_10" version="2.13.0"/>
   <components>
-    <component id="middleware.freertos-kernel.MIMXRT1062" name="FreeRTOS kernel" brief="FreeRTOS kernel" version="10.5.0" full_name="FreeRTOS kernel" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" user_visible="true" type="OS" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.MIMXRT1062" name="FreeRTOS kernel" brief="FreeRTOS kernel" version="10.5.0" full_name="FreeRTOS kernel" devices="MIMXRT1062xxxxA" user_visible="true" type="OS" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <defines>
         <define name="SDK_OS_FREE_RTOS" value=""/>
       </defines>
@@ -55,10 +53,10 @@
       <source relative_path="./include" project_relative_path="include" type="doc">
         <files mask="stdint.readme"/>
       </source>
-      <source toolchain="armgcc mcuxpresso" compiler="compiler_gcc" relative_path="./portable/GCC/ARM_CM4F" project_relative_path="portable/GCC/ARM_CM4F" type="src" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB">
+      <source toolchain="armgcc mcuxpresso" compiler="compiler_gcc" relative_path="./portable/GCC/ARM_CM4F" project_relative_path="portable/GCC/ARM_CM4F" type="src" device_cores="core0_MIMXRT1062xxxxA">
         <files mask="port.c"/>
       </source>
-      <source toolchain="armgcc mcuxpresso" compiler="compiler_gcc" relative_path="./portable/GCC/ARM_CM4F" project_relative_path="portable/GCC/ARM_CM4F" type="c_include" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB">
+      <source toolchain="armgcc mcuxpresso" compiler="compiler_gcc" relative_path="./portable/GCC/ARM_CM4F" project_relative_path="portable/GCC/ARM_CM4F" type="c_include" device_cores="core0_MIMXRT1062xxxxA">
         <files mask="portmacro.h"/>
       </source>
       <source relative_path="./portable/MemMang" project_relative_path="portable/MemMang" type="other">
@@ -72,10 +70,10 @@
       </source>
       <include_paths>
         <include_path relative_path="./include" project_relative_path="include" type="c_include"/>
-        <include_path relative_path="./portable/GCC/ARM_CM4F" project_relative_path="portable/GCC/ARM_CM4F" toolchain="armgcc mcuxpresso" type="c_include" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB"/>
+        <include_path relative_path="./portable/GCC/ARM_CM4F" project_relative_path="portable/GCC/ARM_CM4F" toolchain="armgcc mcuxpresso" type="c_include" device_cores="core0_MIMXRT1062xxxxA"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.armv8m.MIMXRT1062" name="FreeRTOS port ARMv8M" brief="FreeRTOS port ARMv8M" version="10.5.0" full_name="FreeRTOS port ARMv8M" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.armv8m.MIMXRT1062" name="FreeRTOS port ARMv8M" brief="FreeRTOS port ARMv8M" version="10.5.0" full_name="FreeRTOS port ARMv8M" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -161,7 +159,7 @@
         <include_path relative_path="./portable/ARMv8M/secure/macros" project_relative_path="portable/ARMv8M/secure/macros" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.doc.MIMXRT1062" name="Root FreeRTOS documents." brief="FreeRTOS root documents" version="10.5.0" full_name="FreeRTOS root documents" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.doc.MIMXRT1062" name="Root FreeRTOS documents." brief="FreeRTOS root documents" version="10.5.0" full_name="FreeRTOS root documents" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <source relative_path="./" type="doc">
         <files mask="ChangeLogKSDK.txt"/>
         <files mask="CMakeLists.txt"/>
@@ -179,7 +177,7 @@
         <files mask="Use-the-GCC-ports.txt"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.extension.MIMXRT1062" name="FreeRTOS NXP extension" brief="FreeRTOS NXP extension" version="10.5.0" full_name="FreeRTOS NXP extension" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel extensions" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.extension.MIMXRT1062" name="FreeRTOS NXP extension" brief="FreeRTOS NXP extension" version="10.5.0" full_name="FreeRTOS NXP extension" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel extensions" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <source relative_path="./include" project_relative_path="include" type="c_include">
         <files mask="freertos_tasks_c_additions.h"/>
       </source>
@@ -190,7 +188,7 @@
         <include_path relative_path="./include" project_relative_path="include" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.heap_1.MIMXRT1062" name="FreeRTOS heap 1" brief="FreeRTOS heap 1" version="10.5.0" full_name="FreeRTOS heap 1" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_1.MIMXRT1062" name="FreeRTOS heap 1" brief="FreeRTOS heap 1" version="10.5.0" full_name="FreeRTOS heap 1" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -198,7 +196,7 @@
         <files mask="heap_1.c"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_2.MIMXRT1062" name="FreeRTOS heap 2" brief="FreeRTOS heap 2" version="10.5.0" full_name="FreeRTOS heap 2" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_2.MIMXRT1062" name="FreeRTOS heap 2" brief="FreeRTOS heap 2" version="10.5.0" full_name="FreeRTOS heap 2" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -206,7 +204,7 @@
         <files mask="heap_2.c"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_3.MIMXRT1062" name="FreeRTOS heap 3" brief="FreeRTOS heap 3" version="10.5.0" full_name="FreeRTOS heap_3" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_3.MIMXRT1062" name="FreeRTOS heap 3" brief="FreeRTOS heap 3" version="10.5.0" full_name="FreeRTOS heap_3" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -217,7 +215,7 @@
         <files mask="middleware_freertos-kernel_heap_3_MIMXRT1062.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_4.MIMXRT1062" name="FreeRTOS heap 4" brief="FreeRTOS heap 4" version="10.5.0" full_name="FreeRTOS heap 4" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_4.MIMXRT1062" name="FreeRTOS heap 4" brief="FreeRTOS heap 4" version="10.5.0" full_name="FreeRTOS heap 4" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -228,7 +226,7 @@
         <files mask="middleware_freertos-kernel_heap_4_MIMXRT1062.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_5.MIMXRT1062" name="FreeRTOS heap 5" brief="FreeRTOS heap 5" version="10.5.0" full_name="FreeRTOS heap 5" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_5.MIMXRT1062" name="FreeRTOS heap 5" brief="FreeRTOS heap 5" version="10.5.0" full_name="FreeRTOS heap 5" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -236,7 +234,7 @@
         <files mask="heap_5.c"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.mpu_wrappers.MIMXRT1062" name="FreeRTOS MPU wrappers" brief="FreeRTOS MPU wrappers" version="10.5.0" full_name="FreeRTOS MPU wrappers" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.mpu_wrappers.MIMXRT1062" name="FreeRTOS MPU wrappers" brief="FreeRTOS MPU wrappers" version="10.5.0" full_name="FreeRTOS MPU wrappers" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <component_dependency value="middleware.freertos-kernel.MIMXRT1062"/>
       </dependencies>
@@ -244,7 +242,7 @@
         <files mask="mpu_wrappers.c"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.template.MIMXRT1062" name="FreeRTOS configuration template" brief="Template configuration file to be edited by user. Provides also memory allocator (heap_x), change variant if needed." version="10.5.0" full_name="FreeRTOS configuration template" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="Operating System/FreeRTOS kernel" user_visible="false" type="project_template" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.template.MIMXRT1062" name="FreeRTOS configuration template" brief="Template configuration file to be edited by user. Provides also memory allocator (heap_x), change variant if needed." version="10.5.0" full_name="FreeRTOS configuration template" devices="MIMXRT1062xxxxA" category="Operating System/FreeRTOS kernel" user_visible="false" type="project_template" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <source exclude="true" relative_path="./portable/MemMang" project_relative_path="portable/MemMang" type="src">
         <files mask="heap_1.c"/>
         <files mask="heap_2.c"/>
@@ -254,11 +252,11 @@
       <source relative_path="./portable/MemMang" project_relative_path="portable/MemMang" type="src">
         <files mask="heap_4.c"/>
       </source>
-      <source relative_path="./template/ARM_CM4F" project_relative_path="../../source" type="c_include" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB">
+      <source relative_path="./template/ARM_CM4F" project_relative_path="../../source" type="c_include" device_cores="core0_MIMXRT1062xxxxA">
         <files mask="FreeRTOSConfig.h"/>
       </source>
       <include_paths>
-        <include_path relative_path="./template/ARM_CM4F" project_relative_path="../../source" type="c_include" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB"/>
+        <include_path relative_path="./template/ARM_CM4F" project_relative_path="../../source" type="c_include" device_cores="core0_MIMXRT1062xxxxA"/>
       </include_paths>
     </component>
   </components>
