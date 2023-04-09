@@ -36,4 +36,7 @@ endif()
 if(${MCUX_DEVICE} STREQUAL "MIMXRT595S_cm33")
     include(middleware_freertos-kernel_MIMXRT595S_cm33)
 endif()
+if(${MCUX_DEVICE} STREQUAL "MIMX9352")
+    include(middleware_freertos-kernel_MIMX9352)
+endif()
 
