@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_13" name="FreeRTOS" brief="Real-time operating system for microcontrollers from Amazon" format_version="3.13" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.13.xsd">
+<ksdk:manifest xmlns:ksdk="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="SDK_2.x_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_12" name="FreeRTOS" brief="Real-time operating system for microcontrollers from Amazon" format_version="3.12" api_version="2.0.0" xsi:schemaLocation="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd http://nxp.com/mcuxpresso/sdk/sdk_manifest_v3.12.xsd">
 
   <externalDefinitions>
     <definition extID="MIMXRT1062xxxxA"/>
@@ -10,7 +10,7 @@
     <definition extID="mcuxpresso"/>
     <definition extID="compiler_gcc"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK2141_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_13" name="MCUXpressoSDK2141_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_13" version="2.14.1" revision="Provided by Script"/>
+  <ksdk id="MCUXpressoSDK2141_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_12" name="MCUXpressoSDK2141_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_12" version="2.14.1" revision="Provided by Script"/>
   <components>
     <component id="middleware.freertos-kernel.extension.MIMXRT1062" name="FreeRTOS NXP extension" brief="FreeRTOS NXP extension" version="10.5.1" full_name="FreeRTOS NXP extension" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="RTOS/TAD extension" user_visible="false" type="other" package_base_path="../rtos/freertos/freertos-kernel" project_base_path="freertos/freertos-kernel">
       <source relative_path="../../../include" project_relative_path="include" type="c_include">
@@ -24,7 +24,7 @@
       </include_paths>
     </component>
     <component id="middleware.freertos-kernel.template.MIMXRT1062" name="FreeRTOS configuration template" brief="Template configuration file to be edited by user. Provides also memory allocator (heap_x), change variant if needed." version="10.5.1" full_name="FreeRTOS configuration template" devices="MIMXRT1062xxxxA MIMXRT1062xxxxB" category="RTOS/freertos template" user_visible="false" type="project_template" package_base_path="../rtos/freertos/freertos-kernel" project_base_path="freertos/freertos-kernel">
-      <source relative_path="../../../template/ARM_CM4F_4_priority_bits" project_relative_path="../../source" config="true" type="c_include" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB">
+      <source relative_path="../../../template/ARM_CM4F_4_priority_bits" project_relative_path="../../source" type="c_include" device_cores="core0_MIMXRT1062xxxxA core0_MIMXRT1062xxxxB">
         <files mask="FreeRTOSConfig.h"/>
       </source>
       <source toolchain="armgcc" relative_path="./" type="workspace">
