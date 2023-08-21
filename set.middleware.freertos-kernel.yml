@@ -41,7 +41,6 @@ container.freertos-kernel.doc:
     - source: rtos/freertos/freertos-kernel/History.txt
     - source: rtos/freertos/freertos-kernel/LICENSE.md
     - source: rtos/freertos/freertos-kernel/manifest.yml
-    - source: rtos/freertos/freertos-kernel/portable/CMakeLists.txt
     - source: rtos/freertos/freertos-kernel/portable/ARMClang/Use-the-GCC-ports.txt
     - source: rtos/freertos/freertos-kernel/Quick_Start_Guide.url
     - source: rtos/freertos/freertos-kernel/README.md
@@ -90,99 +89,20 @@ middleware.freertos-kernel.template:
     repo_base_path: rtos/freertos/freertos-kernel
     project_base_path: freertos/freertos-kernel
     cc-include:
-    - repo_relative_path: template/ARM_CM0
-      cores: cm0p
+    - cores: cm33
+      fpu: SP_FPU
+      repo_relative_path: template/ARM_CM33
       project_relative_path: "../../source"
       target_file:
       - FreeRTOSConfig.h
-      package_relative_path: template/ARM_CM0
-    - repo_relative_path: template/ARM_CM33_3_priority_bits
-      cores: cm33
-      fpu: NO_FPU SP_FPU
-      device_ids: LPC5502 LPC5504 LPC5506 LPC5512 LPC5514 LPC5516 LPC5526 LPC5528
-        LPC55S04 LPC55S06 LPC55S14 LPC55S16 LPC55S26 LPC55S28 LPC55S66 LPC55S69 MIMXRT533S
-        MIMXRT555S MIMXRT595S MIMXRT633S MIMXRT685S
-      project_relative_path: "../../source"
-      target_file:
-      - FreeRTOSConfig.h
-      package_relative_path: template/ARM_CM33_3_priority_bits
-    - repo_relative_path: template/ARM_CM4F_3_priority_bits
-      cores: cm4f
-      device_ids: LPC54005 LPC54016 LPC54018 LPC54018J2M LPC54018J4M LPC54605J512
-        LPC54605J256 LPC54606J512 LPC54606J256 LPC54607J256 LPC54607J512 LPC54608J512
-        LPC54616J512 LPC54616J256 LPC54618J512 LPC54628J512 LPC54S005 LPC54S016 LPC54S018
-        LPC54S018J2M LPC54S018J4M
-      project_relative_path: "../../source"
-      target_file:
-      - FreeRTOSConfig.h
-      package_relative_path: template/ARM_CM4F_3_priority_bits
-    - repo_relative_path: template/ARM_CM4F_4_priority_bits
-      cores: cm4f cm7f
-      device_ids: K32L3A60xxx MCIMX7U3xxxxx MCIMX7U5xxxxx MIMX8MD6xxxJZ MIMX8MD6xxxHZ
-        MIMX8MD7xxxJZ MIMX8MD7xxxHZ MIMX8MM1xxxLZ MIMX8MM1xxxKZ MIMX8MM2xxxLZ MIMX8MM2xxxKZ
-        MIMX8MM3xxxLZ MIMX8MM3xxxKZ MIMX8MM4xxxLZ MIMX8MM4xxxKZ MIMX8MM5xxxLZ MIMX8MM5xxxKZ
-        MIMX8MM6xxxLZ MIMX8MM6xxxKZ MIMX8MQ5xxxJZ MIMX8MQ5xxxHZ MIMX8MQ6xxxJZ MIMX8MQ6xxxHZ
-        MIMX8MQ7xxxJZ MIMX8MQ7xxxHZ MIMXRT1165xxxxx MIMXRT1166xxxxx MIMXRT1173xxxxx
-        MIMXRT1175xxxxx MIMXRT1176xxxxx MK02FN128xxx10 MK02FN64xxx10 MK22FN128xxx12
-        MK22FN256xxx12 MK22FN512xxx12 MIMX8ML3xxxLZ MIMX8ML3xxxKZ MIMX8ML4xxxLZ MIMX8ML4xxxKZ
-        MIMX8ML6xxxLZ MIMX8ML6xxxKZ MIMX8ML8xxxLZ MIMX8ML8xxxKZ MIMX8MN1xxxJZ MIMX8MN1xxxIZ
-        MIMX8MN2xxxJZ MIMX8MN2xxxIZ MIMX8MN3xxxJZ MIMX8MN3xxxIZ MIMX8MN4xxxJZ MIMX8MN4xxxIZ
-        MIMX8MN5xxxJZ MIMX8MN5xxxIZ MIMX8MN6xxxJZ MIMX8MN6xxxIZ MIMXRT1011xxxxx MIMXRT1015xxxxx
-        MIMXRT1021xxxxx MIMXRT1024xxxxx MIMXRT1041xxxxB MIMXRT1042xxxxB MIMXRT1051xxxxB
-        MIMXRT1052xxxxB MIMXRT1061xxxxA MIMXRT1061xxxxB MIMXRT1062xxxxA MIMXRT1062xxxxB
-        MIMXRT1064xxxxA MIMXRT1171xxxxx MIMXRT1172xxxxx
-      project_relative_path: "../../source"
-      target_file:
-      - FreeRTOSConfig.h
-      package_relative_path: template/ARM_CM4F_4_priority_bits
+      package_relative_path: template/ARM_CM33
     files:
-    - source: rtos/freertos/freertos-kernel/template/ARM_CM0/FreeRTOSConfig.h
-      cores: cm0p
+    - cores: cm33
+      fpu: SP_FPU
+      source: rtos/freertos/freertos-kernel/template/ARM_CM33/FreeRTOSConfig.h
       project_relative_path: "../../source"
-      repo_relative_path: template/ARM_CM0
-      package_relative_path: template/ARM_CM0
-      type: c_include
-      config: true
-    - source: rtos/freertos/freertos-kernel/template/ARM_CM33_3_priority_bits/FreeRTOSConfig.h
-      cores: cm33
-      fpu: NO_FPU SP_FPU
-      device_ids: LPC5502 LPC5504 LPC5506 LPC5512 LPC5514 LPC5516 LPC5526 LPC5528
-        LPC55S04 LPC55S06 LPC55S14 LPC55S16 LPC55S26 LPC55S28 LPC55S66 LPC55S69 MIMXRT533S
-        MIMXRT555S MIMXRT595S MIMXRT633S MIMXRT685S
-      project_relative_path: "../../source"
-      repo_relative_path: template/ARM_CM33_3_priority_bits
-      package_relative_path: template/ARM_CM33_3_priority_bits
-      type: c_include
-      config: true
-    - source: rtos/freertos/freertos-kernel/template/ARM_CM4F_3_priority_bits/FreeRTOSConfig.h
-      cores: cm4f
-      device_ids: LPC54005 LPC54016 LPC54018 LPC54018J2M LPC54018J4M LPC54605J512
-        LPC54605J256 LPC54606J512 LPC54606J256 LPC54607J256 LPC54607J512 LPC54608J512
-        LPC54616J512 LPC54616J256 LPC54618J512 LPC54628J512 LPC54S005 LPC54S016 LPC54S018
-        LPC54S018J2M LPC54S018J4M
-      project_relative_path: "../../source"
-      repo_relative_path: template/ARM_CM4F_3_priority_bits
-      package_relative_path: template/ARM_CM4F_3_priority_bits
-      type: c_include
-      config: true
-    - source: rtos/freertos/freertos-kernel/template/ARM_CM4F_4_priority_bits/FreeRTOSConfig.h
-      cores: cm4f cm7f
-      device_ids: K32L3A60xxx MCIMX7U3xxxxx MCIMX7U5xxxxx MIMX8MD6xxxJZ MIMX8MD6xxxHZ
-        MIMX8MD7xxxJZ MIMX8MD7xxxHZ MIMX8MM1xxxLZ MIMX8MM1xxxKZ MIMX8MM2xxxLZ MIMX8MM2xxxKZ
-        MIMX8MM3xxxLZ MIMX8MM3xxxKZ MIMX8MM4xxxLZ MIMX8MM4xxxKZ MIMX8MM5xxxLZ MIMX8MM5xxxKZ
-        MIMX8MM6xxxLZ MIMX8MM6xxxKZ MIMX8MQ5xxxJZ MIMX8MQ5xxxHZ MIMX8MQ6xxxJZ MIMX8MQ6xxxHZ
-        MIMX8MQ7xxxJZ MIMX8MQ7xxxHZ MIMXRT1165xxxxx MIMXRT1166xxxxx MIMXRT1173xxxxx
-        MIMXRT1175xxxxx MIMXRT1176xxxxx MK02FN128xxx10 MK02FN64xxx10 MK22FN128xxx12
-        MK22FN256xxx12 MK22FN512xxx12 MIMX8ML3xxxLZ MIMX8ML3xxxKZ MIMX8ML4xxxLZ MIMX8ML4xxxKZ
-        MIMX8ML6xxxLZ MIMX8ML6xxxKZ MIMX8ML8xxxLZ MIMX8ML8xxxKZ MIMX8MN1xxxJZ MIMX8MN1xxxIZ
-        MIMX8MN2xxxJZ MIMX8MN2xxxIZ MIMX8MN3xxxJZ MIMX8MN3xxxIZ MIMX8MN4xxxJZ MIMX8MN4xxxIZ
-        MIMX8MN5xxxJZ MIMX8MN5xxxIZ MIMX8MN6xxxJZ MIMX8MN6xxxIZ MIMXRT1011xxxxx MIMXRT1015xxxxx
-        MIMXRT1021xxxxx MIMXRT1024xxxxx MIMXRT1041xxxxB MIMXRT1042xxxxB MIMXRT1051xxxxB
-        MIMXRT1052xxxxB MIMXRT1061xxxxA MIMXRT1061xxxxB MIMXRT1062xxxxA MIMXRT1062xxxxB
-        MIMXRT1064xxxxA MIMXRT1171xxxxx MIMXRT1172xxxxx
-      project_relative_path: "../../source"
-      repo_relative_path: template/ARM_CM4F_4_priority_bits
-      package_relative_path: template/ARM_CM4F_4_priority_bits
+      repo_relative_path: template/ARM_CM33
+      package_relative_path: template/ARM_CM33
       type: c_include
       config: true
     - source: rtos/freertos/freertos-kernel/middleware_freertos-kernel_template.cmake
@@ -247,7 +167,7 @@ scr.freertos-kernel:
     - license.amazon_mit
     Format: source code
     Description: Open source RTOS kernel for small devices
-    Location: rtos/freertos/freertos-kernel
+    Location: rtos/freertos/freertos_kernel
     Origin: Amazon (MIT)
     Url: https://github.com/FreeRTOS/FreeRTOS-Kernel
 license.segger_sysview:
@@ -283,18 +203,6 @@ middleware.freertos-kernel:
     - repo_relative_path: include
       project_relative_path: include
       package_relative_path: include
-    - compilers: gcc
-      cores: cm0p
-      repo_relative_path: portable/GCC/ARM_CM0
-      toolchains: armgcc mcux
-      project_relative_path: portable/GCC/ARM_CM0
-      package_relative_path: portable/GCC/ARM_CM0
-    - compilers: gcc
-      cores: cm4f cm7f
-      repo_relative_path: portable/GCC/ARM_CM4F
-      toolchains: armgcc mcux
-      project_relative_path: portable/GCC/ARM_CM4F
-      package_relative_path: portable/GCC/ARM_CM4F
     files:
     - source: rtos/freertos/freertos-kernel/croutine.c
       repo_relative_path: "./"
@@ -406,38 +314,6 @@ middleware.freertos-kernel:
       project_relative_path: "./"
       package_relative_path: "./"
       type: src
-    - compilers: gcc
-      cores: cm0p
-      source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM0/port.c
-      toolchains: armgcc mcux
-      repo_relative_path: portable/GCC/ARM_CM0
-      project_relative_path: portable/GCC/ARM_CM0
-      package_relative_path: portable/GCC/ARM_CM0
-      type: src
-    - compilers: gcc
-      cores: cm0p
-      source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM0/portmacro.h
-      toolchains: armgcc mcux
-      repo_relative_path: portable/GCC/ARM_CM0
-      project_relative_path: portable/GCC/ARM_CM0
-      package_relative_path: portable/GCC/ARM_CM0
-      type: c_include
-    - compilers: gcc
-      cores: cm4f cm7f
-      source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM4F/port.c
-      toolchains: armgcc mcux
-      repo_relative_path: portable/GCC/ARM_CM4F
-      project_relative_path: portable/GCC/ARM_CM4F
-      package_relative_path: portable/GCC/ARM_CM4F
-      type: src
-    - compilers: gcc
-      cores: cm4f cm7f
-      source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM4F/portmacro.h
-      toolchains: armgcc mcux
-      repo_relative_path: portable/GCC/ARM_CM4F
-      project_relative_path: portable/GCC/ARM_CM4F
-      package_relative_path: portable/GCC/ARM_CM4F
-      type: c_include
     - source: rtos/freertos/freertos-kernel/portable/MemMang/ReadMe.url
       repo_relative_path: portable/MemMang
       project_relative_path: portable/MemMang
@@ -503,14 +379,14 @@ middleware.freertos-kernel.cm33_non_trustzone:
     project_base_path: freertos/freertos-kernel
     cc-include:
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       repo_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
       toolchains: armgcc mcux
       project_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
       package_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
     files:
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/port.c
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
@@ -518,7 +394,7 @@ middleware.freertos-kernel.cm33_non_trustzone:
       package_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
       type: src
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.c
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
@@ -526,7 +402,7 @@ middleware.freertos-kernel.cm33_non_trustzone:
       package_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
       type: src
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.h
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
@@ -534,7 +410,7 @@ middleware.freertos-kernel.cm33_non_trustzone:
       package_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
       type: c_include
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portmacro.h
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
@@ -542,7 +418,7 @@ middleware.freertos-kernel.cm33_non_trustzone:
       package_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
       type: c_include
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33_NTZ/non_secure/portmacrocommon.h
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33_NTZ/non_secure
@@ -587,14 +463,14 @@ middleware.freertos-kernel.cm33_trustzone.non_secure:
     project_base_path: freertos/freertos-kernel
     cc-include:
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       repo_relative_path: portable/GCC/ARM_CM33/non_secure
       toolchains: armgcc mcux
       project_relative_path: portable/GCC/ARM_CM33/non_secure
       package_relative_path: portable/GCC/ARM_CM33/non_secure
     files:
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/port.c
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33/non_secure
@@ -602,7 +478,7 @@ middleware.freertos-kernel.cm33_trustzone.non_secure:
       package_relative_path: portable/GCC/ARM_CM33/non_secure
       type: src
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portasm.c
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33/non_secure
@@ -610,7 +486,7 @@ middleware.freertos-kernel.cm33_trustzone.non_secure:
       package_relative_path: portable/GCC/ARM_CM33/non_secure
       type: src
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portasm.h
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33/non_secure
@@ -618,7 +494,7 @@ middleware.freertos-kernel.cm33_trustzone.non_secure:
       package_relative_path: portable/GCC/ARM_CM33/non_secure
       type: c_include
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portmacro.h
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33/non_secure
@@ -626,7 +502,7 @@ middleware.freertos-kernel.cm33_trustzone.non_secure:
       package_relative_path: portable/GCC/ARM_CM33/non_secure
       type: c_include
     - cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/non_secure/portmacrocommon.h
       toolchains: armgcc mcux
       repo_relative_path: portable/GCC/ARM_CM33/non_secure
@@ -906,7 +782,7 @@ middleware.freertos-kernel.cm33_trustzone.secure.context:
     cc-include:
     - cores: cm33
       toolchains: armgcc mcux
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       repo_relative_path: portable/GCC/ARM_CM33/secure
       project_relative_path: portable/GCC/ARM_CM33/secure
       package_relative_path: portable/GCC/ARM_CM33/secure
@@ -914,7 +790,7 @@ middleware.freertos-kernel.cm33_trustzone.secure.context:
     - source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_context.h
       toolchains: armgcc mcux
       cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       repo_relative_path: portable/GCC/ARM_CM33/secure
       project_relative_path: portable/GCC/ARM_CM33/secure
       package_relative_path: portable/GCC/ARM_CM33/secure
@@ -922,7 +798,7 @@ middleware.freertos-kernel.cm33_trustzone.secure.context:
     - source: rtos/freertos/freertos-kernel/portable/GCC/ARM_CM33/secure/secure_init.h
       toolchains: armgcc mcux
       cores: cm33
-      fpu: NO_FPU SP_FPU
+      fpu: SP_FPU
       repo_relative_path: portable/GCC/ARM_CM33/secure
       project_relative_path: portable/GCC/ARM_CM33/secure
       package_relative_path: portable/GCC/ARM_CM33/secure
