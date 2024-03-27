@@ -10,7 +10,7 @@
     <definition extID="mcuxpresso"/>
     <definition extID="compiler_gcc"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK2150_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_14" name="MCUXpressoSDK2150_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_14" version="2.15.0" revision="2.15.0"/>
+  <ksdk id="MCUXpressoSDK215100_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_14" name="MCUXpressoSDK215100_middleware_amazon_freertos_kernel_MIMXRT1062_manifest_v3_14" version="2.15.100" revision="2.15.100"/>
   <components>
     <component id="middleware.freertos-kernel.extension.MIMXRT1062" name="FreeRTOS NXP extension" brief="FreeRTOS NXP extension" version="10.5.1" full_name="FreeRTOS NXP extension" category="RTOS/TAD extension" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
