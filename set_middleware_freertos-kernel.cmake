@@ -19,7 +19,7 @@ if (CONFIG_USE_middleware_freertos-kernel_template)
 
 message("middleware_freertos-kernel_template component is included from ${CMAKE_CURRENT_LIST_FILE}.")
 
-if(CONFIG_CORE STREQUAL cm33 AND CONFIG_FPU STREQUAL SP_FPU AND (CONFIG_DEVICE_ID STREQUAL RW610 OR CONFIG_DEVICE_ID STREQUAL RW612))
+if(CONFIG_CORE STREQUAL cm33 AND CONFIG_FPU STREQUAL SP_FPU AND (CONFIG_DEVICE_ID STREQUAL K32W1480xxxA OR CONFIG_DEVICE_ID STREQUAL RW610 OR CONFIG_DEVICE_ID STREQUAL RW612))
   add_config_file(${CMAKE_CURRENT_LIST_DIR}/./template/ARM_CM33_3_priority_bits/FreeRTOSConfig.h ${CMAKE_CURRENT_LIST_DIR}/./template/ARM_CM33_3_priority_bits middleware_freertos-kernel_template)
 endif()
 
