@@ -7,9 +7,9 @@
     <definition extID="cm33_MIMX8UD5xxx08"/>
     <definition extID="mcuxpresso"/>
   </externalDefinitions>
-  <ksdk id="MCUXpressoSDK2150_middleware_amazon_freertos_kernel_MIMX8UD5_manifest_v3_14" name="MCUXpressoSDK2150_middleware_amazon_freertos_kernel_MIMX8UD5_manifest_v3_14" version="2.15.0" revision="2.15.0"/>
+  <ksdk id="MCUXpressoSDK216000_middleware_amazon_freertos_kernel_MIMX8UD5_manifest_v3_14" name="MCUXpressoSDK216000_middleware_amazon_freertos_kernel_MIMX8UD5_manifest_v3_14" version="2.16.000" revision="2.16.000"/>
   <components>
-    <component id="middleware.freertos-kernel.extension.MIMX8UD5" name="FreeRTOS NXP extension" brief="FreeRTOS NXP extension" version="10.5.1" full_name="FreeRTOS NXP extension" category="RTOS/TAD extension" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.extension.MIMX8UD5" name="FreeRTOS NXP extension" brief="FreeRTOS NXP extension" version="11.0.1" full_name="FreeRTOS NXP extension" category="RTOS/TAD extension" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <device_dependency value="MIMX8UD5xxx08"/>
       </dependencies>
@@ -23,7 +23,7 @@
         <include_path relative_path="./include" project_relative_path="include" type="c_include"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.template.MIMX8UD5" name="FreeRTOS configuration template" brief="Template configuration file to be edited by user. Provides also memory allocator (heap_x), change variant if needed." version="10.5.1" full_name="FreeRTOS configuration template" category="RTOS/freertos template" user_visible="false" type="project_template" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.template.MIMX8UD5" name="FreeRTOS configuration template" brief="Template configuration file to be edited by user. Provides also memory allocator (heap_x), change variant if needed." version="11.0.1" full_name="FreeRTOS configuration template" category="RTOS/freertos template" user_visible="false" type="project_template" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <device_dependency value="MIMX8UD5xxx08"/>
       </dependencies>
@@ -37,7 +37,7 @@
         <include_path relative_path="./template/ARM_CM33_3_priority_bits" project_relative_path="../../source" type="c_include" device_cores="cm33_MIMX8UD5xxx08"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.MIMX8UD5" name="FreeRTOS kernel" brief="FreeRTOS kernel" version="10.5.1" full_name="FreeRTOS kernel" category="RTOS/Core" user_visible="true" type="OS" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.MIMX8UD5" name="FreeRTOS kernel" brief="FreeRTOS kernel" version="11.0.1" full_name="FreeRTOS kernel" category="RTOS/Core" user_visible="true" type="OS" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <defines>
         <define name="SDK_OS_FREE_RTOS" value=""/>
       </defines>
@@ -66,7 +66,10 @@
         <files mask="list.h"/>
         <files mask="message_buffer.h"/>
         <files mask="mpu_prototypes.h"/>
+        <files mask="mpu_syscall_numbers.h"/>
         <files mask="mpu_wrappers.h"/>
+        <files mask="newlib-freertos.h"/>
+        <files mask="picolibc-freertos.h"/>
         <files mask="portable.h"/>
         <files mask="projdefs.h"/>
         <files mask="queue.h"/>
@@ -91,9 +94,10 @@
       </source>
       <include_paths>
         <include_path relative_path="./include" project_relative_path="include" type="c_include"/>
+        <include_path relative_path="./include" project_relative_path="include" type="asm_include"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.cm33_non_trustzone.MIMX8UD5" name="cm33 nontrustzone port" brief="FreeRTOS cm33 non trustzone port" version="10.5.1" full_name="FreeRTOS cm33 non trustzone port" category="RTOS/cm33_non_trustzone_port" user_visible="true" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.cm33_non_trustzone.MIMX8UD5" name="cm33 nontrustzone port" brief="FreeRTOS cm33 non trustzone port" version="11.0.1" full_name="FreeRTOS cm33 non trustzone port" category="RTOS/cm33_non_trustzone_port" user_visible="true" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <any_of>
@@ -114,6 +118,7 @@
         </all>
       </dependencies>
       <source toolchain="armgcc mcuxpresso" relative_path="./portable/GCC/ARM_CM33_NTZ/non_secure" project_relative_path="portable/GCC/ARM_CM33_NTZ/non_secure" type="src" device_cores="cm33_MIMX8UD5xxx08">
+        <files mask="mpu_wrappers_v2_asm.c"/>
         <files mask="port.c"/>
         <files mask="portasm.c"/>
       </source>
@@ -129,20 +134,21 @@
         <include_path relative_path="./portable/GCC/ARM_CM33_NTZ/non_secure" project_relative_path="portable/GCC/ARM_CM33_NTZ/non_secure" toolchain="armgcc mcuxpresso" type="c_include" device_cores="cm33_MIMX8UD5xxx08"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.cm33_trustzone.non_secure.MIMX8UD5" name="cm33 secure port" brief="FreeRTOS cm33 secure port" version="10.5.1" full_name="FreeRTOS cm33 secure port" category="RTOS/cm33_secure_port" user_visible="false" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.cm33_trustzone.non_secure.MIMX8UD5" name="cm33 secure port" brief="FreeRTOS cm33 secure port" version="11.0.1" full_name="FreeRTOS cm33 secure port" category="RTOS/cm33_secure_port" user_visible="true" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <not>
             <component_dependency value="middleware.freertos-kernel.cm33_non_trustzone.MIMX8UD5"/>
           </not>
           <component_dependency value="middleware.freertos-kernel.MIMX8UD5"/>
-          <component_dependency value="middleware.freertos-kernel.mpu_wrappers.MIMX8UD5"/>
+          <component_dependency value="middleware.freertos-kernel.mpu_wrappers_v2.MIMX8UD5"/>
           <component_dependency value="middleware.freertos-kernel.cm33_trustzone.secure.context.MIMX8UD5"/>
           <device_dependency value="MIMX8UD5xxx08"/>
           <device_core_dependency value="cm33_MIMX8UD5xxx08"/>
         </all>
       </dependencies>
       <source toolchain="armgcc mcuxpresso" relative_path="./portable/GCC/ARM_CM33/non_secure" project_relative_path="portable/GCC/ARM_CM33/non_secure" type="src" device_cores="cm33_MIMX8UD5xxx08">
+        <files mask="mpu_wrappers_v2_asm.c"/>
         <files mask="port.c"/>
         <files mask="portasm.c"/>
       </source>
@@ -158,7 +164,7 @@
         <include_path relative_path="./portable/GCC/ARM_CM33/non_secure" project_relative_path="portable/GCC/ARM_CM33/non_secure" toolchain="armgcc mcuxpresso" type="c_include" device_cores="cm33_MIMX8UD5xxx08"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.heap_1.MIMX8UD5" name="FreeRTOS heap 1" brief="FreeRTOS heap 1" version="10.5.1" full_name="FreeRTOS heap 1" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_1.MIMX8UD5" name="FreeRTOS heap 1" brief="FreeRTOS heap 1" version="11.0.1" full_name="FreeRTOS heap 1" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <not>
@@ -184,7 +190,7 @@
         <files mask="middleware_freertos-kernel_heap_1.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_2.MIMX8UD5" name="FreeRTOS heap 2" brief="FreeRTOS heap 2" version="10.5.1" full_name="FreeRTOS heap 2" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_2.MIMX8UD5" name="FreeRTOS heap 2" brief="FreeRTOS heap 2" version="11.0.1" full_name="FreeRTOS heap 2" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <not>
@@ -210,7 +216,7 @@
         <files mask="middleware_freertos-kernel_heap_2.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_3.MIMX8UD5" name="FreeRTOS heap 3" brief="FreeRTOS heap 3" version="10.5.1" full_name="FreeRTOS heap_3" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_3.MIMX8UD5" name="FreeRTOS heap 3" brief="FreeRTOS heap 3" version="11.0.1" full_name="FreeRTOS heap_3" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <not>
@@ -236,7 +242,7 @@
         <files mask="middleware_freertos-kernel_heap_3.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_4.MIMX8UD5" name="FreeRTOS heap 4" brief="FreeRTOS heap 4" version="10.5.1" full_name="FreeRTOS heap 4" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_4.MIMX8UD5" name="FreeRTOS heap 4" brief="FreeRTOS heap 4" version="11.0.1" full_name="FreeRTOS heap 4" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <not>
@@ -262,7 +268,7 @@
         <files mask="middleware_freertos-kernel_heap_4.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.heap_5.MIMX8UD5" name="FreeRTOS heap 5" brief="FreeRTOS heap 5" version="10.5.1" full_name="FreeRTOS heap 5" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.heap_5.MIMX8UD5" name="FreeRTOS heap 5" brief="FreeRTOS heap 5" version="11.0.1" full_name="FreeRTOS heap 5" category="RTOS/Heap" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <not>
@@ -288,7 +294,21 @@
         <files mask="middleware_freertos-kernel_heap_5.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.mpu_wrappers.MIMX8UD5" name="FreeRTOS MPU wrappers" brief="FreeRTOS MPU wrappers" version="10.5.1" full_name="FreeRTOS MPU wrappers" category="RTOS/MPU wrappers" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.mpu_wrappers_v2.MIMX8UD5" name="new V2 FreeRTOS MPU wrappers introduced in V10.6.0" brief="new V2 FreeRTOS MPU wrappers introduced in V10.6.0" version="11.0.1" full_name="new V2 FreeRTOS MPU wrappers introduced in V10.6.0" category="RTOS/MPU wrappers V2" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+      <dependencies>
+        <all>
+          <component_dependency value="middleware.freertos-kernel.MIMX8UD5"/>
+          <device_dependency value="MIMX8UD5xxx08"/>
+        </all>
+      </dependencies>
+      <source relative_path="./portable/Common" project_relative_path="portable/Common" type="src">
+        <files mask="mpu_wrappers_v2.c"/>
+      </source>
+      <source toolchain="armgcc" relative_path="./" type="workspace">
+        <files mask="middleware_freertos-kernel_mpu_wrappers_v2.cmake" hidden="true"/>
+      </source>
+    </component>
+    <component id="middleware.freertos-kernel.mpu_wrappers.MIMX8UD5" name="old FreeRTOS MPU wrappers used before V10.6.0" brief="old FreeRTOS MPU wrappers used before V10.6.0" version="11.0.1" full_name="old FreeRTOS MPU wrappers used before V10.6.0" category="RTOS/MPU wrappers" user_visible="false" type="other" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <component_dependency value="middleware.freertos-kernel.MIMX8UD5"/>
@@ -302,7 +322,7 @@
         <files mask="middleware_freertos-kernel_mpu_wrappers.cmake" hidden="true"/>
       </source>
     </component>
-    <component id="middleware.freertos-kernel.cm33_trustzone.secure.context.MIMX8UD5" name="cm33 trustzone secure context" brief="FreeRTOS cm33 TrustZone secure port" version="10.5.1" full_name="FreeRTOS cm33 TrustZone secure port" category="RTOS/cm33 trustzone secure context" user_visible="false" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.cm33_trustzone.secure.context.MIMX8UD5" name="cm33 trustzone secure context" brief="FreeRTOS cm33 TrustZone secure port" version="11.0.1" full_name="FreeRTOS cm33 TrustZone secure port" category="RTOS/cm33 trustzone secure context" user_visible="false" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <device_dependency value="MIMX8UD5xxx08"/>
@@ -320,7 +340,7 @@
         <include_path relative_path="./portable/GCC/ARM_CM33/secure" project_relative_path="portable/GCC/ARM_CM33/secure" toolchain="armgcc mcuxpresso" type="c_include" device_cores="cm33_MIMX8UD5xxx08"/>
       </include_paths>
     </component>
-    <component id="middleware.freertos-kernel.cm33_trustzone.secure.MIMX8UD5" name="cm33 secure port" brief="FreeRTOS Secure Context" version="10.5.1" full_name="FreeRTOS Secure Context" category="RTOS/cm33 secure port" user_visible="true" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
+    <component id="middleware.freertos-kernel.cm33_trustzone.secure.MIMX8UD5" name="cm33 secure port" brief="FreeRTOS Secure Context" version="11.0.1" full_name="FreeRTOS Secure Context" category="RTOS/cm33 secure port" user_visible="true" type="middleware" package_base_path=".././" project_base_path="freertos/freertos-kernel">
       <dependencies>
         <all>
           <any_of>
