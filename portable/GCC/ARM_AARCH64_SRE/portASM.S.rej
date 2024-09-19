@@ -1,0 +1,17 @@
+--- portable/GCC/AARCH64_SRE/portASM.S
++++ portable/GCC/AARCH64_SRE/portASM.S
+@@ -318,11 +318,13 @@ FreeRTOS_IRQ_Handler:
+ 	/* Maintain the interrupt ID value across the function call. */
+ 	STP		X0, X1, [SP, #-0x10]!
+ 
++	/* Enable and re-disable IRQ to make IRQ Handler can be nested. */
++	MSR	DAIFCLR, #2
+ 	/* Call the C handler. */
+ 	BL vApplicationIRQHandler
+-
+ 	/* Disable interrupts. */
+ 	MSR 	DAIFSET, #2
++
+ 	DSB		SY
+ 	ISB		SY
+ 

@@ -318,9 +318,6 @@ FreeRTOS_IRQ_Handler:
     /* Maintain the interrupt ID value across the function call. */
     STP     X0, X1, [SP, #-0x10]!
 
-    /* Enable and re-disable IRQ to make IRQ Handler can be nested. */
-    MSR	DAIFCLR, #2
-
     /* Call the C handler. */
     BL vApplicationIRQHandler
 
