@@ -376,12 +376,21 @@ void FreeRTOS_Tick_Handler( void )
     }
     #endif
 
+    /* Interrupts should not be enabled before this point. */
+    #if ( configASSERT_DEFINED == 1 )
+    {
+        uint32_t ulMaskBits;
+
+        __asm volatile ( "MRS %0, DAIF" : "=r" ( ulMaskBits )::"memory" );
+        configASSERT( ( ulMaskBits & portDAIF_I ) != 0 );
+    }
+    #endif /* configASSERT_DEFINED */
+
     /* Set interrupt mask before altering scheduler structures.   The tick
      * handler runs at the lowest priority, so interrupts cannot already be masked,
      * so there is no need to save and restore the current mask value.  It is
      * necessary to turn off interrupts in the CPU itself while the ICCPMR is being
      * updated. */
-    portDISABLE_INTERRUPTS();
     /* s3_0_c4_c6_0 is ICC_PMR_EL1. */
     __asm volatile ( "MSR s3_0_c4_c6_0, %0      \n"
                      "DSB SY                    \n"
