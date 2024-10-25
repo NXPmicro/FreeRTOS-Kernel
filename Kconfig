@@ -1,0 +1,854 @@
+#
+# Copyright 2024 NXP
+#
+# SPDX-License-Identifier: MIT
+#
+
+menu "FreeRTOS kernel"
+
+    config MCUX_COMPONENT_middleware.freertos-kernel
+        bool "FreeRTOS kernel"
+        imply MCUX_COMPONENT_middleware.freertos-kernel.config
+
+    choice MCUX_MISC_middleware.freertos-kernel.dynamic_allocator.selection
+        prompt "Dynamic Allocator"
+        depends on MCUX_COMPONENT_middleware.freertos-kernel
+        default MCUX_MISC_middleware.freertos-kernel.dynamic_allocator.none
+
+        config MCUX_MISC_middleware.freertos-kernel.dynamic_allocator.none
+        bool "none"
+            help
+                Do not use allocator.
+
+        config MCUX_COMPONENT_middleware.freertos-kernel.heap_1
+            bool "heap 1"
+            help
+                The very simplest, does not permit memory to be freed.
+
+        config MCUX_COMPONENT_middleware.freertos-kernel.heap_2
+            bool "heap 2"
+            help
+                Permits memory to be freed, but does not coalescence adjacent free blocks.
+
+        config MCUX_COMPONENT_middleware.freertos-kernel.heap_3
+            bool "heap 3"
+            help
+                Simply wraps the standard malloc() and free() for thread safety.
+
+        config MCUX_COMPONENT_middleware.freertos-kernel.heap_4
+            bool "heap 4"
+            help
+                Coalescences adjacent free blocks to avoid fragmentation. Includes absolute address placement option.
+
+        config MCUX_COMPONENT_middleware.freertos-kernel.heap_5
+            bool "heap 5"
+            help
+                As per heap_4, with the ability to span the heap across multiple non-adjacent memory areas.
+    endchoice
+
+    if MCUX_COMPONENT_middleware.freertos-kernel
+        config MCUX_PRJSEG_middleware.freertos-kernel.generated_config
+                bool "Generate FreeRTOS configuration header"
+                depends on MCUX_COMPONENT_middleware.freertos-kernel
+                default y
+                help
+                    Generate the FreeRTOSConfig.h, otherwise users need to provide their
+                    own FreeRTOSConfig.h.
+
+    if MCUX_PRJSEG_middleware.freertos-kernel.generated_config
+
+        menu "Configuration (FreeRTOSConfig_Gen.h)"
+
+            #******************************************************************************#
+            #* Hardware description related definitions. **********************************#
+            #******************************************************************************#
+            config configCPU_CLOCK_HZ
+                string "configCPU_CLOCK_HZ"
+                default "(SystemCoreClock)"
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Scheduling behaviour related definitions. **********************************#
+            #******************************************************************************#
+            config configTICK_RATE_HZ
+                int "configTICK_RATE_HZ"
+                default 200
+                help
+                    No prefix in generated macro
+
+            config configUSE_PREEMPTION
+                bool "configUSE_PREEMPTION"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_TIME_SLICING
+                bool "configUSE_TIME_SLICING"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_PORT_OPTIMISED_TASK_SELECTION
+                bool "configUSE_PORT_OPTIMISED_TASK_SELECTION"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_TICKLESS_IDLE
+                int "configUSE_TICKLESS_IDLE"
+                default 0
+                help
+                    No prefix in generated macro
+
+            config configMAX_PRIORITIES
+                int "configMAX_PRIORITIES"
+                default 5
+                help
+                    No prefix in generated macro
+
+            config configMINIMAL_STACK_SIZE
+                int "configMINIMAL_STACK_SIZE"
+                default 90
+                help
+                    No prefix in generated macro
+
+            config configMAX_TASK_NAME_LEN
+                int "configMAX_TASK_NAME_LEN"
+                default 20
+                help
+                    No prefix in generated macro
+
+            # config configTICK_TYPE_WIDTH_IN_BITS
+            #     string "configTICK_TYPE_WIDTH_IN_BITS"
+            #     default "(TICK_TYPE_WIDTH_64_BITS)"
+            #     help
+            #         No prefix in generated macro
+
+            config configUSE_16_BIT_TICKS
+                bool "configUSE_16_BIT_TICKS"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configIDLE_SHOULD_YIELD
+                bool "configIDLE_SHOULD_YIELD"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configTASK_NOTIFICATION_ARRAY_ENTRIES
+                int "configTASK_NOTIFICATION_ARRAY_ENTRIES"
+                default 1
+                help
+                    No prefix in generated macro
+
+            config configQUEUE_REGISTRY_SIZE
+                int "configQUEUE_REGISTRY_SIZE"
+                default 8
+                help
+                    No prefix in generated macro
+
+            config configENABLE_BACKWARD_COMPATIBILITY
+                bool "configENABLE_BACKWARD_COMPATIBILITY"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configNUM_THREAD_LOCAL_STORAGE_POINTERS
+                int "configNUM_THREAD_LOCAL_STORAGE_POINTERS"
+                default 5
+                help
+                    No prefix in generated macro
+
+            config configUSE_MINI_LIST_ITEM
+                bool "configUSE_MINI_LIST_ITEM"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configSTACK_DEPTH_TYPE
+                string "configSTACK_DEPTH_TYPE"
+                default "size_t"
+                help
+                    No prefix in generated macro
+
+            config configMESSAGE_BUFFER_LENGTH_TYPE
+                string "configMESSAGE_BUFFER_LENGTH_TYPE"
+                default "size_t"
+                help
+                    No prefix in generated macro
+
+            config configUSE_EVENT_GROUPS
+                bool "configUSE_EVENT_GROUPS"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_STREAM_BUFFERS
+                bool "configUSE_STREAM_BUFFERS"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configPROTECTED_KERNEL_OBJECT_POOL_SIZE
+                int "configPROTECTED_KERNEL_OBJECT_POOL_SIZE"
+                default 10
+                help
+                    No prefix in generated macro
+
+            config configHEAP_CLEAR_MEMORY_ON_FREE
+                bool "configHEAP_CLEAR_MEMORY_ON_FREE"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_NEWLIB_REENTRANT
+                bool "configUSE_NEWLIB_REENTRANT"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configINCLUDE_FREERTOS_TASK_C_ADDITIONS_H
+                bool "configINCLUDE_FREERTOS_TASK_C_ADDITIONS_H"
+                select MCUX_COMPONENT_middleware.freertos-kernel.extension
+                default n
+                help
+                    No prefix in generated macro
+                # "Allow user defined functionality added to tasks.c"
+
+            config configRECORD_STACK_HIGH_ADDRESS
+                bool "configRECORD_STACK_HIGH_ADDRESS"
+                default n
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Software timer related definitions. ****************************************#
+            #******************************************************************************#
+            config configUSE_TIMERS
+                bool "configUSE_TIMERS"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configTIMER_TASK_PRIORITY
+                string "configTIMER_TASK_PRIORITY"
+                default "(configMAX_PRIORITIES-1)"
+                help
+                    No prefix in generated macro
+
+            config configTIMER_TASK_STACK_DEPTH
+                string "configTIMER_TASK_STACK_DEPTH"
+                default "(configMINIMAL_STACK_SIZE*2)"
+                help
+                    No prefix in generated macro
+
+            config configTIMER_QUEUE_LENGTH
+                int "configTIMER_QUEUE_LENGTH"
+                default 2
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Memory allocation related definitions. *************************************#
+            #******************************************************************************#
+            config configSUPPORT_DYNAMIC_ALLOCATION
+                bool
+                default y if ! MCUX_MISC_middleware.freertos-kernel.dynamic_allocator.none
+                default n if MCUX_MISC_middleware.freertos-kernel.dynamic_allocator.none
+                help
+                    No prefix in generated macro
+
+                if configSUPPORT_DYNAMIC_ALLOCATION
+
+                    config configAPPLICATION_ALLOCATED_HEAP
+                        bool "configAPPLICATION_ALLOCATED_HEAP"
+                        default n
+                        help
+                            No prefix in generated macro
+
+                    config configSTACK_ALLOCATION_FROM_SEPARATE_HEAP
+                        bool "configSTACK_ALLOCATION_FROM_SEPARATE_HEAP"
+                        default n
+                        help
+                            No prefix in generated macro
+
+                    config configENABLE_HEAP_PROTECTOR
+                        bool "configENABLE_HEAP_PROTECTOR"
+                        default n
+                        help
+                            No prefix in generated macro
+
+                    config configTOTAL_HEAP_SIZE
+                        int "configTOTAL_HEAP_SIZE"
+                        default 10240
+                        help
+                            No prefix in generated macro
+
+                    config configFRTOS_MEMORY_SCHEME
+                        int
+                        default 1 if MCUX_COMPONENT_middleware.freertos-kernel.heap_1
+                        default 2 if MCUX_COMPONENT_middleware.freertos-kernel.heap_2
+                        default 3 if MCUX_COMPONENT_middleware.freertos-kernel.heap_3
+                        default 4 if MCUX_COMPONENT_middleware.freertos-kernel.heap_4
+                        default 5 if MCUX_COMPONENT_middleware.freertos-kernel.heap_5
+                        help
+                            No prefix in generated macro
+
+                endif #configSUPPORT_DYNAMIC_ALLOCATION
+
+            config configSUPPORT_STATIC_ALLOCATION
+                bool "configSUPPORT_STATIC_ALLOCATION"
+                help
+                    No prefix in generated macro
+
+            config configMINIMAL_SECURE_STACK_SIZE
+                int "configMINIMAL_SECURE_STACK_SIZE"
+                default 256
+                help
+                    No prefix in generated macro
+
+
+            #******************************************************************************#
+            #* Interrupt behaviour configuration. *****************************************#
+            #******************************************************************************#
+            config configPRIO_BITS
+                int "configPRIO_BITS"
+                default MCUX_HW_INT_PRIO_BITS
+                help
+                    No prefix in generated macro
+
+            config configOVERRIDE_DEFAULT_TICK_CONFIGURATION
+                int "configOVERRIDE_DEFAULT_TICK_CONFIGURATION"
+                default 0
+                help
+                    No prefix in generated macro
+
+            config configLPTMR_CLOCK_HZ
+                int "configLPTMR_CLOCK_HZ"
+                default 0
+                help
+                    No prefix in generated macro
+
+
+            config configLIBRARY_LOWEST_INTERRUPT_PRIORITY
+                string "configLIBRARY_LOWEST_INTERRUPT_PRIORITY"
+                default "((1U << (configPRIO_BITS)) - 1U)"
+                help
+                    No prefix in generated macro
+
+            config configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY
+                int "configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY"
+                default 2
+                help
+                    No prefix in generated macro
+
+            config configLOGGING_MAX_MESSAGE_LENGTH
+                int "configLOGGING_MAX_MESSAGE_LENGTH"
+                default 256
+                help
+                    No prefix in generated macro
+
+            config configLOGGING_INCLUDE_TIME_AND_TASK_NAME
+                bool "configLOGGING_INCLUDE_TIME_AND_TASK_NAME"
+                default y
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Interrupt nesting behaviour configuration. *********************************#
+            #******************************************************************************#
+            config configKERNEL_INTERRUPT_PRIORITY
+                string "configKERNEL_INTERRUPT_PRIORITY"
+                default "(configLIBRARY_LOWEST_INTERRUPT_PRIORITY << (8 - configPRIO_BITS))"
+                help
+                    No prefix in generated macro
+
+            config configMAX_SYSCALL_INTERRUPT_PRIORITY
+                string "configMAX_SYSCALL_INTERRUPT_PRIORITY"
+                default "(configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - configPRIO_BITS))"
+                help
+                    No prefix in generated macro
+
+            config configMAX_API_CALL_INTERRUPT_PRIORITY
+                string "configMAX_API_CALL_INTERRUPT_PRIORITY"
+                default "(configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - configPRIO_BITS))"
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Hook and callback function related definitions. ****************************#
+            #******************************************************************************#
+            config configUSE_IDLE_HOOK
+                bool "configUSE_IDLE_HOOK"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_TICK_HOOK
+                bool "configUSE_TICK_HOOK"
+                help
+                    No prefix in generated macro
+
+            config configCHECK_FOR_STACK_OVERFLOW
+                bool "configCHECK_FOR_STACK_OVERFLOW"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_MALLOC_FAILED_HOOK
+                bool "configUSE_MALLOC_FAILED_HOOK"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_DAEMON_TASK_STARTUP_HOOK
+                bool "configUSE_DAEMON_TASK_STARTUP_HOOK"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_SB_COMPLETED_CALLBACK
+                bool "configUSE_SB_COMPLETED_CALLBACK"
+                default n
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Run time and task stats gathering related definitions. *********************#
+            #******************************************************************************#
+            config configGENERATE_RUN_TIME_STATS
+                bool "configGENERATE_RUN_TIME_STATS"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_TRACE_FACILITY
+                bool "configUSE_TRACE_FACILITY"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_STATS_FORMATTING_FUNCTIONS
+                bool "configUSE_STATS_FORMATTING_FUNCTIONS"
+                default n
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Co-routine related definitions. ********************************************#
+            #******************************************************************************#
+            config configUSE_CO_ROUTINES
+                bool "configUSE_CO_ROUTINES"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configMAX_CO_ROUTINE_PRIORITIES
+                int "configMAX_CO_ROUTINE_PRIORITIES"
+                default 2
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Debugging assistance. ******************************************************#
+            #******************************************************************************#
+            config configASSERT(x)
+                string "configASSERT"
+                default "if(( x) == 0) {taskDISABLE_INTERRUPTS(); for (;;);}"
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* FreeRTOS MPU specific definitions. *****************************************#
+            #******************************************************************************#
+            config configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS
+                bool "configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configTOTAL_MPU_REGIONS
+                int "configTOTAL_MPU_REGIONS"
+                default 8
+                help
+                    No prefix in generated macro
+
+            config configTEX_S_C_B_FLASH
+                string "configTEX_S_C_B_FLASH"
+                default "0x07UL"
+                help
+                    No prefix in generated macro
+
+            config configTEX_S_C_B_SRAM
+                string "configTEX_S_C_B_SRAM"
+                default "0x07UL"
+                help
+                    No prefix in generated macro
+
+            config configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY
+                bool "configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configALLOW_UNPRIVILEGED_CRITICAL_SECTIONS
+                bool "configALLOW_UNPRIVILEGED_CRITICAL_SECTIONS"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configSYSTEM_CALL_STACK_SIZE
+                int "configSYSTEM_CALL_STACK_SIZE"
+                default 128
+                help
+                    No prefix in generated macro
+
+            config configENABLE_ACCESS_CONTROL_LIST
+                bool "configENABLE_ACCESS_CONTROL_LIST"
+                default n
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* SMP( Symmetric MultiProcessing ) Specific Configuration definitions. *******#
+            #* Experimental ***************************************************************#
+            #******************************************************************************#
+            config configNUMBER_OF_CORES
+                int "configNUMBER_OF_CORES"
+                default 1
+                help
+                    No prefix in generated macro
+
+            config configRUN_MULTIPLE_PRIORITIES
+                bool "configRUN_MULTIPLE_PRIORITIES"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_CORE_AFFINITY
+                bool "configUSE_CORE_AFFINITY"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configTASK_DEFAULT_CORE_AFFINITY
+                string "configTASK_DEFAULT_CORE_AFFINITY"
+                default "(tskNO_AFFINITY)"
+                help
+                    No prefix in generated macro
+
+            config configUSE_TASK_PREEMPTION_DISABLE
+                bool "configUSE_TASK_PREEMPTION_DISABLE"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_PASSIVE_IDLE_HOOK
+                bool "configUSE_PASSIVE_IDLE_HOOK"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configTIMER_SERVICE_TASK_CORE_AFFINITY
+                string "configTIMER_SERVICE_TASK_CORE_AFFINITY"
+                default "(tskNO_AFFINITY)"
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* ARMv8-M secure side port related definitions. ******************************#
+            #******************************************************************************#
+            config secureconfigMAX_SECURE_CONTEXTS
+                int "secureconfigMAX_SECURE_CONTEXTS"
+                default 8
+                help
+                    No prefix in generated macro
+
+            config configKERNEL_PROVIDED_STATIC_MEMORY
+                bool "configKERNEL_PROVIDED_STATIC_MEMORY"
+                default n
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* ARMv8-M port Specific Configuration definitions. ***************************#
+            #******************************************************************************#
+            config configENABLE_TRUSTZONE
+                bool "configENABLE_TRUSTZONE"
+                default n
+                depends on MCUX_HW_SAU
+                help
+                    No prefix in generated macro
+                    Set to 1 when running FreeRTOS on the non-secure side to enable the
+                    ability to call the (non-secure callable) functions exported from secure side.
+
+            config configRUN_FREERTOS_SECURE_ONLY
+                bool "configRUN_FREERTOS_SECURE_ONLY"
+                default y if MCUX_HW_SAU
+                default n
+                help
+                    No prefix in generated macro
+                    Set to 1 when running FreeRTOS on the secure side. Note that in this case TrustZone is
+                    not supported as secure tasks cannot call non-secure code i.e. configENABLE_TRUSTZONE
+                    must be set to 0 when setting configRUN_FREERTOS_SECURE_ONLY to 1.
+
+            config configENABLE_MPU
+                bool "configENABLE_MPU"
+                default n
+                help
+                    No prefix in generated macro
+                    Set to 1 to enable the Memory Protection Unit (MPU), or 0 to leave the Memory
+                    Protection Unit disabled.
+
+            config configENABLE_FPU
+                bool "configENABLE_FPU"
+                default y if MCUX_HW_FPU
+                default n
+                help
+                    No prefix in generated macro
+                    Set to 1 to enable the Floating Point Unit (FPU), or 0 to leave the Floating
+                    Point Unit disabled.
+
+            config configENABLE_MVE
+                bool "configENABLE_MVE"
+                default n
+                help
+                    No prefix in generated macro
+                    Set to 1 to enable the M-Profile Vector Extension (MVE) support, or 0 to
+                    leave the MVE support disabled. This option is only applicable to Cortex-M55
+                    and Cortex-M85 ports as M-Profile Vector Extension (MVE) is available only on
+                    these architectures. configENABLE_MVE must be left undefined, or defined to 0
+                    for the Cortex-M23 Cortex-M33 and Cortex-M35P ports.
+
+            #******************************************************************************#
+            #* ARMv7-M and ARMv8-M port Specific Configuration definitions. ***************#
+            #******************************************************************************#
+            config configCHECK_HANDLER_INSTALLATION
+                bool "configCHECK_HANDLER_INSTALLATION"
+                default y
+                help
+                    No prefix in generated macro
+
+            #******************************************************************************#
+            #* Definitions that include or exclude functionality. *************************#
+            #******************************************************************************#
+            config configUSE_TASK_NOTIFICATIONS
+                bool "configUSE_TASK_NOTIFICATIONS"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_MUTEXES
+                bool "configUSE_MUTEXES"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_RECURSIVE_MUTEXES
+                bool "configUSE_RECURSIVE_MUTEXES"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_COUNTING_SEMAPHORES
+                bool "configUSE_COUNTING_SEMAPHORES"
+                default y
+                help
+                    No prefix in generated macro
+
+            config configUSE_QUEUE_SETS
+                bool "configUSE_QUEUE_SETS"
+                default n
+                help
+                    No prefix in generated macro
+
+            config configUSE_APPLICATION_TASK_TAG
+                bool "configUSE_APPLICATION_TASK_TAG"
+                default n
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_vTaskPrioritySet
+                bool "INCLUDE_vTaskPrioritySet"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_uxTaskPriorityGet
+                bool "INCLUDE_uxTaskPriorityGet"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_vTaskDelete
+                bool "INCLUDE_vTaskDelete"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_vTaskSuspend
+                bool "INCLUDE_vTaskSuspend"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_vTaskDelayUntil
+                bool "INCLUDE_vTaskDelayUntil"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_vTaskDelay
+                bool "INCLUDE_vTaskDelay"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTaskGetSchedulerState
+                bool "INCLUDE_xTaskGetSchedulerState"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTaskGetCurrentTaskHandle
+                bool "INCLUDE_xTaskGetCurrentTaskHandle"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_uxTaskGetStackHighWaterMark
+                bool "INCLUDE_uxTaskGetStackHighWaterMark"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_uxTaskGetStackHighWaterMark2
+                bool "INCLUDE_uxTaskGetStackHighWaterMark2"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTaskGetIdleTaskHandle
+                bool "INCLUDE_xTaskGetIdleTaskHandle"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_eTaskGetState
+                bool "INCLUDE_eTaskGetState"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTimerPendFunctionCall
+                bool "INCLUDE_xTimerPendFunctionCall"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTaskAbortDelay
+                bool "INCLUDE_xTaskAbortDelay"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xSemaphoreGetMutexHolder
+                bool "INCLUDE_xSemaphoreGetMutexHolder"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTaskGetHandle
+                bool "INCLUDE_xTaskGetHandle"
+                default y
+                help
+                    No prefix in generated macro
+
+            config INCLUDE_xTaskResumeFromISR
+                bool "INCLUDE_xTaskResumeFromISR"
+                default y
+                help
+                    No prefix in generated macro
+
+            config vPortSVCHandler
+                string
+                default "SVC_Handler"
+                help
+                    No prefix in generated macro
+
+            config xPortPendSVHandler
+                string
+                default "PendSV_Handler"
+                help
+                    No prefix in generated macro
+
+            config xPortSysTickHandler
+                string
+                default "SysTick_Handler"
+                help
+                    No prefix in generated macro
+
+        endmenu
+
+    endif
+
+
+    config MCUX_COMPONENT_middleware.freertos-kernel.cm33_non_trustzone
+        bool "cm33 non trustzone port"
+        default n
+        depends on (MCUX_HW_CORE_CM33 || MCUX_HW_CORE_CM33F)
+
+
+    config MCUX_COMPONENT_middleware.freertos-kernel.cm33_trustzone.non_secure
+        bool "cm33 trustzone, non secure port"
+        default n
+        depends on (MCUX_HW_CORE_CM33 || MCUX_HW_CORE_CM33F)
+
+    config MCUX_COMPONENT_middleware.freertos-kernel.tfm_ns
+        bool "TF-M NS support"
+        select MCUX_COMPONENT_middleware.freertos-kernel.cm33_non_trustzone
+        select MCUX_COMPONENT_middleware.tfm.ns
+        default n
+        help
+            OS wrapper for running inside TF-M non secure world
+
+    config MCUX_COMPONENT_middleware.freertos-kernel.extension
+        default n
+        bool "Task Aware Debugger (TAD) support"
+
+        menuconfig MPU_SUPPORT
+            bool "MPU wrappers"
+            default n
+            help
+                No prefix in generated macro
+
+            if MPU_SUPPORT
+                choice
+                    default MCUX_COMPONENT_middleware.freertos-kernel.mpu_wrappers_v2
+                    prompt "version"
+                    config MCUX_COMPONENT_middleware.freertos-kernel.mpu_wrappers
+                        bool "v1"
+                    config MCUX_COMPONENT_middleware.freertos-kernel.mpu_wrappers_v2
+                        bool "v2"
+                endchoice
+            endif
+
+    config MCUX_COMPONENT_middleware.freertos-kernel.config
+        bool "configuration template"
+
+    config USE_PERCEPIO_TRACELYZER
+        bool "Use Percepio Tracelyzer"
+        default n
+        help
+            No prefix in generated macro
+
+    endif
+
+    config MCUX_COMPONENT_middleware.freertos-kernel.cm33_trustzone.secure
+        bool "cm33 trustzone secure port"
+        default n
+        depends on (MCUX_HW_CORE_CM33 || MCUX_HW_CORE_CM33F)
+
+endmenu
