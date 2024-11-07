@@ -266,6 +266,8 @@ if (CONFIG_MCUX_COMPONENT_middleware.freertos-kernel.cm33_trustzone.non_secure)
                 portable/GCC/ARM_CM33/non_secure/portasm.h
                 portable/GCC/ARM_CM33/non_secure/portmacro.h
                 portable/GCC/ARM_CM33/non_secure/portmacrocommon.h
+                portable/GCC/ARM_CM33/secure/secure_context.h
+                portable/GCC/ARM_CM33/secure/secure_init.h
         TOOLCHAINS armgcc mcux mdk
         CORES cm33 cm33f
         FPU NO_FPU SP_FPU
@@ -277,6 +279,8 @@ if (CONFIG_MCUX_COMPONENT_middleware.freertos-kernel.cm33_trustzone.non_secure)
                 portable/IAR/ARM_CM33/non_secure/portasm.s
                 portable/IAR/ARM_CM33/non_secure/portmacro.h
                 portable/IAR/ARM_CM33/non_secure/portmacrocommon.h
+                portable/IAR/ARM_CM33/secure/secure_context.h
+                portable/IAR/ARM_CM33/secure/secure_init.h
         TOOLCHAINS iar
         CORES cm33 cm33f
         FPU NO_FPU SP_FPU
