@@ -44,6 +44,11 @@ menu "FreeRTOS kernel"
             bool "heap 5"
             help
                 As per heap_4, with the ability to span the heap across multiple non-adjacent memory areas.
+
+        config MCUX_MISC_middleware.freertos-kernel.heap_custom
+            bool "Custom heap"
+            help
+                A custom heap implementation must be provided externally.
     endchoice
 
     if MCUX_COMPONENT_middleware.freertos-kernel
