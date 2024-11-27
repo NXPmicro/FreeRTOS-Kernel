@@ -81,6 +81,7 @@ menu "FreeRTOS kernel"
                 default 200
                 help
                     No prefix in generated macro
+                    type unsigned
 
             config configUSE_PREEMPTION
                 bool "configUSE_PREEMPTION"
