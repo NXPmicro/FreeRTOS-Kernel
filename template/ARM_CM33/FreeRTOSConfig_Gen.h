@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef FREERTOS_CONFIG_H
-#define FREERTOS_CONFIG_H
+#ifndef _FREERTOSCONFIG_GEN_H_
+#define _FREERTOSCONFIG_GEN_H_
 
 /*-----------------------------------------------------------
  * Application specific definitions.
@@ -166,4 +166,4 @@ standard names. */
  * and a time stamp. */
 #define configLOGGING_INCLUDE_TIME_AND_TASK_NAME    1
 
-#endif /* FREERTOS_CONFIG_H */
+#endif /* _FREERTOSCONFIG_GEN_H_ */
